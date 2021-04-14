@@ -1,0 +1,33 @@
+<form #dutyForm="ngForm" (ngSubmit)="onSubmit(dutyForm)">
+    <fieldset>
+        <legend></legend>
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="dutyService.duty._id">
+        <div class="row">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" #name="ngModel" [(ngModel)]="dutyService.duty.name"
+                    placeholder="Enter full name" required [ngClass]="classInput">
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<table class="paleBlueRows">
+    <caption></caption>
+    <thead>
+        <tr>
+            <th scope="">Name</th>
+            <th scope="" colspan="2">Actions</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let duty of dutyService.listDutties">
+        <td>{{duty.name}}</td>
+        <td>
+            <button (click)="onEdit(duty)">Edit</button>
+        </td>
+        <td>
+            <button (click)="onDelete(duty._id)">Delete</button>
+        </td>
+    </tr>
+</table>
